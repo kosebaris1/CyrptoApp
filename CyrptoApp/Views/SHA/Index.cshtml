@@ -1,0 +1,128 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "SHA-256 Hashleme";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        color: #fff;
+    }
+
+    .glass-box {
+        background: rgba(255, 255, 255, 0.07);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        padding: 2rem;
+        color: #fff;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .glass-box:hover {
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-box label,
+        .glass-box textarea,
+        .glass-box input {
+            color: #fff;
+        }
+
+    textarea.form-control,
+    input.form-control {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+        textarea.form-control:focus,
+        input.form-control:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: #00f0ff;
+            box-shadow: none;
+            color: #fff;
+        }
+
+    .btn-glow {
+        background: linear-gradient(to right, #16a085, #1abc9c);
+        color: white;
+        border: none;
+        transition: all 0.3s ease;
+    }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 15px #1abc9c, 0 0 30px #16a085;
+            transform: scale(1.02);
+        }
+
+    .form-label {
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .hash-result {
+        word-break: break-word;
+    }
+
+    .custom-output-box {
+        background-color: rgba(0, 0, 0, 0.4);
+        border-left: 5px solid #0dcaf0;
+        padding: 1rem;
+        border-radius: 10px;
+        color: #f1f1f1;
+        word-break: break-word;
+        margin-top: 2rem;
+    }
+
+        .custom-output-box label {
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .custom-output-box textarea {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+        }
+
+            .custom-output-box textarea:focus {
+                background-color: rgba(255, 255, 255, 0.12);
+                border-color: #0dcaf0;
+                box-shadow: none;
+                color: #fff;
+            }
+</style>
+
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="col-12 col-lg-8 glass-box">
+        <h2 class="text-center mb-4">🧬 SHA-256 Hashleme Aracı</h2>
+
+        <form asp-action="Hash" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">📝 Metin Girin:</label>
+                <input type="text" class="form-control" name="inputText" placeholder="Buraya yaz..." value="@ViewBag.InputText" />
+            </div>
+
+            <div class="text-center fw-bold mb-2">— veya —</div>
+
+            <div class="mb-4">
+                <label class="form-label">📁 Dosya Yükle:</label>
+                <input type="file" class="form-control" name="inputFile" />
+            </div>
+
+            <button type="submit" class="btn btn-glow w-100 py-2 fw-bold">⚡ Hashle</button>
+        </form>
+
+        @if (ViewBag.HashResult != null)
+        {
+            <div class="custom-output-box">
+                <label>🔒 SHA-256 Hash (@(ViewBag.Type == "file" ? "Dosya" : "Metin")):</label>
+                <textarea class="form-control" rows="4" readonly>@ViewBag.HashResult</textarea>
+            </div>
+        }
+    </div>
+</div>

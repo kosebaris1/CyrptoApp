@@ -1,0 +1,149 @@
+﻿@{
+    ViewData["Title"] = "RSA Şifreleme Paneli";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #2c3e50, #3498db); 
+        color: #fff;
+    }
+
+    .rsa-panel {
+        background-color: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+    }
+
+        .rsa-panel label {
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .rsa-panel textarea,
+        .rsa-panel input {
+            background-color: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+            .rsa-panel textarea:focus,
+            .rsa-panel input:focus {
+                background-color: rgba(255, 255, 255, 0.2);
+                border-color: #00f0ff;
+                color: #fff;
+                box-shadow: none;
+            }
+
+        .rsa-panel .btn {
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+            .rsa-panel .btn:hover {
+                transform: scale(1.03);
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            }
+
+    .custom-output-box {
+        background-color: rgba(0, 0, 0, 0.4);
+        border-left: 5px solid #0dcaf0;
+        padding: 1rem;
+        border-radius: 10px;
+        color: #f1f1f1;
+        word-break: break-word;
+    }
+
+        .custom-output-box label {
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .custom-output-box textarea {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+        }
+
+            .custom-output-box textarea:focus {
+                background-color: rgba(255, 255, 255, 0.12);
+                border-color: #0dcaf0;
+                box-shadow: none;
+                color: #fff;
+            }
+</style>
+
+<div class="container-fluid min-vh-100 py-5">
+    <div class="row w-100 justify-content-between g-4">
+       
+        <div class="col-12 col-lg-4 p-4 rsa-panel">
+            <h5 class="mb-3">🔑 Anahtar Üret</h5>
+            <form asp-action="GenerateKeys" method="post">
+                <button type="submit" class="btn btn-primary btn-sm w-100 mb-3">Anahtar Üret</button>
+            </form>
+
+            <label>Public Key:</label>
+            <textarea class="form-control mb-3" rows="6" readonly>@ViewBag.PublicKey</textarea>
+
+            <label>Private Key:</label>
+            <textarea class="form-control" rows="7" readonly>@ViewBag.PrivateKey</textarea>
+        </div>
+
+        <div class="col-12 col-lg-4 p-4 rsa-panel">
+            <h5 class="mb-3">🔒 RSA ile Şifrele</h5>
+            <form asp-action="Encrypt" method="post">
+                <div class="mb-3">
+                    <label>Metin:</label>
+                    <input type="text" class="form-control" name="plainText" required />
+                </div>
+                <div class="mb-3">
+                    <label>Public Key:</label>
+                    <textarea class="form-control" name="publicKey" rows="5" required>@ViewBag.PublicKey</textarea>
+                </div>
+
+                <textarea name="privateKey" class="d-none">@ViewBag.PrivateKey</textarea>
+
+                <button type="submit" class="btn btn-success w-100">Şifrele</button>
+            </form>
+
+            @if (ViewBag.EncryptedText != null)
+            {
+                <div class="custom-output-box mt-4">
+                    <label>🔒 Şifrelenmiş Metin:</label>
+                    <textarea class="form-control" rows="4" readonly>@ViewBag.EncryptedText</textarea>
+                </div>
+            }
+        </div>
+
+        <div class="col-12 col-lg-4 p-4 rsa-panel">
+            <h5 class="mb-3">🔓 RSA ile Çöz</h5>
+            <form asp-action="Decrypt" method="post">
+                <div class="mb-3">
+                    <label>Şifrelenmiş Metin:</label>
+                    <textarea class="form-control" name="encryptedText" rows="3" required>@ViewBag.EncryptedText</textarea>
+                </div>
+                <div class="mb-3">
+                    <label>Private Key:</label>
+                    <textarea class="form-control" name="privateKey" rows="6" required>@ViewBag.PrivateKey</textarea>
+                </div>
+
+                <textarea name="publicKey" class="d-none">@ViewBag.PublicKey</textarea>
+
+                <button type="submit" class="btn btn-warning w-100">Çöz</button>
+            </form>
+
+            @if (ViewBag.DecryptedText != null)
+            {
+                <div class="custom-output-box mt-4">
+                    <label>🔓 Çözülmüş Metin:</label>
+                    <textarea class="form-control" rows="2" readonly>@ViewBag.DecryptedText</textarea>
+                </div>
+            }
+        </div>
+    </div>
+</div>

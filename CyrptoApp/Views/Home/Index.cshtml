@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: #fff;
+    }
+
+    .home-wrapper {
+        min-height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .home-content {
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(8px);
+        padding: 3rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        width: 100%;
+        max-width: 700px;
+        text-align: center;
+    }
+
+    .home-title {
+        font-size: 2.8rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .home-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .home-btn {
+        padding: 1.5rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .home-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+</style>
+
+<div class="home-wrapper">
+    <div class="home-content">
+        <h1 class="home-title">🔐 Şifreleme ve Güvenlik Uygulaması</h1>
+        <p class="home-subtitle">Lütfen yapmak istediğiniz işlemi seçin:</p>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <a href="/RSA/Index" class="btn btn-outline-light w-100 home-btn shadow">
+                    🔐 RSA Şifreleme
+                </a>
+            </div>
+            <div class="col-12 col-md-6">
+                <a href="/SHA/Index" class="btn btn-outline-warning w-100 home-btn shadow">
+                    🧬 SHA-256 Hashleme
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
