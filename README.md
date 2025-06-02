@@ -77,7 +77,7 @@ Yukarıdaki resimlerde görüldüğü üzere SHA-256 ile hashleme yapılmaktadı
 
 ```bash
 # Depoyu klonla
-git clone https://github.com/kullaniciadi/proje-adi.git
+git clone https://github.com/kosebaris1/CyrptoApp.git
 
 # Proje klasörüne gir
 cd proje-adi
