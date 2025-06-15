@@ -4,64 +4,88 @@
 
 <style>
     body {
-        background: linear-gradient(135deg, #2c3e50, #3498db); 
+        background: url('/img/HackerTema.jpg') no-repeat center center fixed;
+        background-size: cover;
         color: #fff;
+        font-family: 'Share Tech Mono', monospace;
     }
 
     .rsa-panel {
-        background-color: rgba(255, 255, 255, 0.06);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         color: #fff;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
     }
 
+        .rsa-panel h5 {
+            font-size: 1.3rem;
+            color: #ffffff;
+            text-shadow: 0 0 5px #ffffff;
+        }
+
         .rsa-panel label {
-            font-weight: 500;
-            color: #fff;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.3rem;
         }
 
         .rsa-panel textarea,
         .rsa-panel input {
-            background-color: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #ffffff;
+            border-radius: 8px;
         }
 
             .rsa-panel textarea:focus,
             .rsa-panel input:focus {
-                background-color: rgba(255, 255, 255, 0.2);
-                border-color: #00f0ff;
+                background-color: rgba(255, 255, 255, 0.15);
+                border-color: #ffffff;
                 color: #fff;
-                box-shadow: none;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
             }
 
         .rsa-panel .btn {
             font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
             .rsa-panel .btn:hover {
-                transform: scale(1.03);
-                box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
             }
 
-    .custom-output-box {
-        background-color: rgba(0, 0, 0, 0.4);
-        border-left: 5px solid #0dcaf0;
-        padding: 1rem;
-        border-radius: 10px;
-        color: #f1f1f1;
-        word-break: break-word;
+    .btn-primary {
+        background-color: #ffffff;
+        color: #000;
+        border: none;
     }
 
-        .custom-output-box label {
-            color: #ffffff;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
+    .btn-success {
+        background-color: #d4fddf;
+        color: #000;
+        border: none;
+    }
+
+    .btn-warning {
+        background-color: #fff1c2;
+        color: #000;
+        border: none;
+    }
+
+    .custom-output-box {
+        background-color: rgba(255, 255, 255, 0.06);
+        border-left: 5px solid #ffffff;
+        padding: 1rem;
+        border-radius: 10px;
+        color: #fff;
+        word-break: break-word;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
 
         .custom-output-box textarea {
             background-color: rgba(255, 255, 255, 0.08);
@@ -72,11 +96,27 @@
 
             .custom-output-box textarea:focus {
                 background-color: rgba(255, 255, 255, 0.12);
-                border-color: #0dcaf0;
+                border-color: #ffffff;
                 box-shadow: none;
                 color: #fff;
             }
+
+    .output-highlight {
+        background-color: rgba(0, 255, 0, 0.08);
+        border-left: 5px solid #ffffff;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        transition: all 0.3s ease;
+    }
+
+        .output-highlight textarea {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid #fff;
+            color: #ffffff;
+            font-weight: bold;
+            text-shadow: 0 0 2px #fff;
+        }
 </style>
+
 
 <div class="container-fluid min-vh-100 py-5">
     <div class="row w-100 justify-content-between g-4">
@@ -113,8 +153,8 @@
 
             @if (ViewBag.EncryptedText != null)
             {
-                <div class="custom-output-box mt-4">
-                    <label>🔒 Şifrelenmiş Metin:</label>
+                <div class="custom-output-box output-highlight mt-4">
+                    <label>🔒 Şifrelenmiş Metin <span class="text-success">✔️</span></label>
                     <textarea class="form-control" rows="4" readonly>@ViewBag.EncryptedText</textarea>
                 </div>
             }
@@ -139,8 +179,8 @@
 
             @if (ViewBag.DecryptedText != null)
             {
-                <div class="custom-output-box mt-4">
-                    <label>🔓 Çözülmüş Metin:</label>
+                <div class="custom-output-box output-highlight mt-4">
+                    <label>🔓 Çözülmüş Metin <span class="text-success">✔️</span></label>
                     <textarea class="form-control" rows="2" readonly>@ViewBag.DecryptedText</textarea>
                 </div>
             }

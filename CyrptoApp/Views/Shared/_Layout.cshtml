@@ -4,13 +4,50 @@
     <meta charset="utf-8" />
     <title>@ViewData["Title"] - Şifreleme Uygulaması</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap ve Font -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            background: url('/img/HackerTema.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Share Tech Mono', monospace;
+            color: #00eaff;
+        }
+
+        .custom-navbar {
+            background-color: rgba(11, 12, 30, 0.85);
+            font-family: 'Share Tech Mono', monospace;
+            border-bottom: 1px solid #00eaff44;
+            z-index: 1000;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #00eaff !important;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px #00eaff;
+        }
+
+        .nav-glow:hover {
+            text-shadow: 0 0 8px #00eaff, 0 0 20px #00eaff;
+            color: #ffffff !important;
+        }
+    </style>
 </head>
 <body>
-  
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
+    <!-- ✅ Navbar Burada -->
+    <nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="/">🔐 Şifreleme</a>
+            <a class="navbar-brand fw-bold text-glow" href="/">🔐 Şifreleme</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -18,19 +55,20 @@
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">🏠 Ana Sayfa</a>
+                        <a class="nav-link nav-glow" href="/">🏠 Ana Sayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/RSA/Index">🔒 RSA</a>
+                        <a class="nav-link nav-glow" href="/RSA/Index">🔒 RSA</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/SHA/Index">🧬 SHA-256</a>
+                        <a class="nav-link nav-glow" href="/SHA/Index">🧬 SHA-256</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- 🔽 Sayfa İçeriği -->
     <div class="container-fluid p-4">
         @RenderBody()
     </div>
